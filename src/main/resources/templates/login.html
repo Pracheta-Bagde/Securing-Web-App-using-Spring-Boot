@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spring Security Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa; /* Light gray background */
+            color: #343a40; /* Dark gray text */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh; /* Full height of the viewport */
+            margin: 0;
+        }
+
+        .container {
+            background-color: white; /* White background for the form */
+            padding: 20px;
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            width: 300px; /* Fixed width for the form */
+        }
+
+        h2 {
+            text-align: center;
+            color: #007bff; /* Bootstrap primary blue */
+            margin-bottom: 20px;
+        }
+
+        .error, .logout {
+            color: #dc3545; /* Red color for errors */
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px; /* Spacing between labels */
+        }
+
+        input[type="text"], input[type="password"] {
+            width: 100%; /* Full width for input fields */
+            padding: 10px; /* Padding inside input fields */
+            border: 1px solid #ced4da; /* Light border */
+            border-radius: 4px; /* Rounded input corners */
+            box-sizing: border-box; /* Include padding and border in width */
+        }
+
+        input[type="submit"] {
+            background-color: #007bff; /* Blue background for submit button */
+            color: white; /* White text */
+            border: none; /* No border */
+            padding: 10px; /* Padding inside the button */
+            border-radius: 4px; /* Rounded button corners */
+            cursor: pointer; /* Pointer cursor on hover */
+            width: 100%; /* Full width for submit button */
+            transition: background-color 0.3s; /* Smooth background change */
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+
+        @media (max-width: 400px) {
+            .container {
+                width: 90%; /* Responsive width for smaller screens */
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Login</h2>
+    <div th:if="${param.error}" class="error">
+        Invalid username and password.
+    </div>
+    <div th:if="${param.logout}" class="logout">
+        You have been logged out.
+    </div>
+    <form th:action="@{/login}" method="post">
+        <div>
+            <label>
+                User Name: <input type="text" name="username" required />
+            </label>
+        </div>
+        <div>
+            <label>
+                Password: <input type="password" name="password" required />
+            </label>
+        </div>
+        <div>
+            <input type="submit" value="Sign In" />
+        </div>
+    </form>
+</div>
+</body>
+</html>
